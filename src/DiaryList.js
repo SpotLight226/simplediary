@@ -1,6 +1,12 @@
+import { useContext } from "react";
 import Diaryitem from "./Diaryitem";
+// import 받아서 사용
+import { DiaryStateContext } from "./App";
 
-const DiaryList = ({ diaryList, onDelete }) => {
+const DiaryList = () => {
+  // Context 에서 value 를 받아온다
+  const diaryList = useContext(DiaryStateContext);
+
   return (
     <div className="DiaryList">
       <h2>일기 리스트</h2>
@@ -11,8 +17,8 @@ const DiaryList = ({ diaryList, onDelete }) => {
             고유한 키가 없다면, index 를 사용
             => 단, 수정, 삭제가 일어나면 오류 발생 !! */}
         {diaryList.map((it) => (
-          // onDelete 를 사용할 수 있게 내려준다
-          <Diaryitem key={it.id} {...it} onDelete={onDelete} />
+          // onRemove 를 사용할 수 있게 내려준다
+          <Diaryitem key={it.id} {...it} />
         ))}
       </div>
     </div>
